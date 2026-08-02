@@ -130,12 +130,13 @@ func (h *APIHandler) ConfirmRetry(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// HMAC Signature & Expiration Verification
-	if err := h.signer.Verify(&proposal); err != nil {
+	valid, errMsg := h.signer.Verify(&proposal)
+	if !valid {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusForbidden)
 		json.NewEncoder(w).Encode(map[string]interface{}{
 			"success": false,
-			"error":   fmt.Sprintf("Security Verification Failed: %v", err),
+			"error":   fmt.Sprintf("Security Verification Failed: %s", errMsg),
 		})
 		return
 	}

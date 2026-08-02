@@ -65,7 +65,7 @@ type Subscription struct {
 	ID         string    `json:"id"`
 	TenantName string    `json:"tenant_name"`
 	Plan       string    `json:"plan"`
-	Status     string    `json:"status"` // "active", "failed", "provisioning"
+	Status     string    `json:"status"`
 	JobID      string    `json:"job_id"`
 	UpdatedAt  time.Time `json:"updated_at"`
 }
@@ -75,14 +75,14 @@ type SignedProposal struct {
 	JobID             string `json:"job_id"`
 	SubscriptionID    string `json:"subscription_id"`
 	TenantName        string `json:"tenant_name"`
-	Action            string `json:"action"` // "retry_job"
+	Action            string `json:"action"`
 	CurrentState      string `json:"current_state"`
-	TargetState       string `json:"target_state"` // "queued"
+	TargetState       string `json:"target_state"`
 	RemainingAttempts int    `json:"remaining_attempts"`
 	MaxRetries        int    `json:"max_retries"`
 	WhatReRunningDoes string `json:"what_rerunning_does"`
 	IssuedAt          int64  `json:"issued_at"`
-	ExpiresAt         int64  `json:"expires_at"` // Unix timestamp seconds
+	ExpiresAt         int64  `json:"expires_at"`
 	Nonce             string `json:"nonce"`
 	Signature         string `json:"signature"`
 }
@@ -109,4 +109,20 @@ type CopilotChatResponse struct {
 	ToolTraces          []ToolTrace     `json:"tool_traces"`
 	RawTimelineReturned bool            `json:"raw_timeline_returned"`
 	Proposal            *SignedProposal `json:"proposal,omitempty"`
+}
+
+type JobListItem struct {
+	Job          ProvisioningJob `json:"job"`
+	Subscription *Subscription   `json:"subscription"`
+}
+
+type JobDetailResponse struct {
+	Job          ProvisioningJob `json:"job"`
+	Subscription *Subscription   `json:"subscription"`
+	Timeline     []StepEvent     `json:"timeline"`
+}
+
+type SSEEvent struct {
+	Type string      `json:"type"`
+	Data interface{} `json:"data"`
 }

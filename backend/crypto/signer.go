@@ -7,7 +7,7 @@ import (
 	"fmt"
 	"time"
 
-	"tenant-copilot-backend/domain"
+	"tenant-copilot/backend/domain"
 )
 
 type ProposalSigner struct {
