@@ -1,0 +1,21 @@
+# Dependencies
+node_modules/
+.pnpm-store/
+
+# Angular build output
+frontend/dist/
+frontend/.angular/
+
+# SQLite Database
+backend/*.db
+backend/*.db-journal
+
+# Binaries
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Environment variables
+.env
+.env.local

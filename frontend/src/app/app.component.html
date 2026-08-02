@@ -1,0 +1,106 @@
+<div class="app-layout">
+  <!-- Top Navigation Header -->
+  <header class="top-nav">
+    <div class="nav-brand">
+      <div class="logo-icon">🚀</div>
+      <div class="brand-text">
+        <h1>Tenant Copilot</h1>
+        <span class="sub-text">Incident Diagnostics Workbench</span>
+      </div>
+    </div>
+
+    <div class="nav-right">
+      <div class="server-status" [class.connected]="apiConnected">
+        <span class="status-dot"></span>
+        <span>SQLite DB: {{ apiConnected ? 'Online' : 'Offline' }}</span>
+      </div>
+
+      <button class="copilot-toggle-btn" (click)="toggleCopilot()">
+        🤖 DevOps Copilot <span class="badge-dot" *ngIf="!isCopilotOpen"></span>
+      </button>
+
+      <button class="refresh-btn" (click)="loadJobs()">
+        🔄 Refresh
+      </button>
+    </div>
+  </header>
+
+  <!-- Main Content Master-Detail Workspace -->
+  <main class="workspace">
+    <!-- Left Column: Incidents Grid / Cards List -->
+    <section class="left-workspace">
+      <app-job-list 
+        [jobs]="jobs" 
+        [selectedJob]="selectedJob" 
+        (jobSelected)="selectJob($event)">
+      </app-job-list>
+    </section>
+
+    <!-- Right Column: Visual Job Detail Timeline (Opens on Card Click) -->
+    <section class="right-workspace">
+      <app-job-detail 
+        *ngIf="selectedJob"
+        [job]="selectedJob" 
+        [sub]="selectedSubscription" 
+        [timeline]="selectedTimeline">
+      </app-job-detail>
+
+      <div *ngIf="!selectedJob" class="no-selection-placeholder">
+        <div class="placeholder-icon">👈</div>
+        <h3>Select an Incident</h3>
+        <p>Click an onboarding card on the left panel to inspect event history.</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- Bottom Audit & Security Bar -->
+  <footer class="audit-footer">
+    <div class="footer-header">
+      <div class="footer-title">
+        <h4>🔐 Security & Gated Audit Log</h4>
+      </div>
+      
+      <div class="policy-pills">
+        <span class="policy-pill green">🛡️ Read-Only Path</span>
+        <span class="policy-pill blue">🔒 HMAC-SHA256</span>
+        <span class="policy-pill purple">⏳ 300s TTL</span>
+      </div>
+    </div>
+
+    <div class="audit-log-grid">
+      <div class="audit-item">
+        <span class="audit-badge verified">VERIFIED</span>
+        <span class="audit-msg">Signed proposal verified for <strong>job-101</strong></span>
+        <span class="audit-token">HMAC OK</span>
+      </div>
+
+      <div class="audit-item">
+        <span class="audit-badge proposal">ISSUED</span>
+        <span class="audit-msg">Expiring proposal card generated</span>
+        <span class="audit-token">300s TTL</span>
+      </div>
+
+      <div class="audit-item">
+        <span class="audit-badge tool">TOOL</span>
+        <span class="audit-msg">Executed <code>get_job_timeline</code></span>
+        <span class="audit-token">Read-Only</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Copilot Drawer Tab -->
+  <div class="floating-copilot-container" *ngIf="isCopilotOpen">
+    <app-copilot 
+      [selectedJob]="selectedJob" 
+      (retryExecuted)="onRetryExecuted()"
+      (closeCopilot)="toggleCopilot()">
+    </app-copilot>
+  </div>
+
+  <!-- Floating Launcher Fab Button -->
+  <button class="floating-copilot-fab" *ngIf="!isCopilotOpen" (click)="toggleCopilot()">
+    <span class="fab-avatar">🤖</span>
+    <span class="fab-text">Copilot</span>
+    <span class="fab-badge">AI</span>
+  </button>
+</div>
