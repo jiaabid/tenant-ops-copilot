@@ -1,6 +1,6 @@
 package store
 
-import "tenant-copilot-backend/domain"
+import "tenant-copilot/backend/domain"
 
 type Store interface {
 	GetAllJobs() []*domain.ProvisioningJob

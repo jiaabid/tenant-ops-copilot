@@ -6,11 +6,11 @@ import (
 	"strings"
 	"sync"
 
-	apiHandler "tenant-copilot-backend/api"
-	"tenant-copilot-backend/copilot"
-	"tenant-copilot-backend/crypto"
-	"tenant-copilot-backend/store"
-	"tenant-copilot-backend/worker"
+	apiHandler "tenant-copilot/backend/api"
+	"tenant-copilot/backend/copilot"
+	"tenant-copilot/backend/crypto"
+	"tenant-copilot/backend/store"
+	"tenant-copilot/backend/worker"
 )
 
 var (
@@ -35,7 +35,6 @@ func initHandler() {
 func Handler(w http.ResponseWriter, r *http.Request) {
 	once.Do(initHandler)
 
-	// Routing logic for Vercel Serverless Function
 	path := r.URL.Path
 
 	switch {

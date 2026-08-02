@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"os"
 
-	"tenant-copilot-backend/api"
-	"tenant-copilot-backend/copilot"
-	"tenant-copilot-backend/crypto"
-	"tenant-copilot-backend/store"
-	"tenant-copilot-backend/worker"
+	"tenant-copilot/backend/api"
+	"tenant-copilot/backend/copilot"
+	"tenant-copilot/backend/crypto"
+	"tenant-copilot/backend/store"
+	"tenant-copilot/backend/worker"
 )
 
 func main() {

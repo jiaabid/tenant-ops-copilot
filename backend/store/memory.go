@@ -4,7 +4,7 @@ import (
 	"sync"
 	"time"
 
-	"tenant-copilot-backend/domain"
+	"tenant-copilot/backend/domain"
 )
 
 type MemoryStore struct {

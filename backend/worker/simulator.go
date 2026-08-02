@@ -6,8 +6,8 @@ import (
 	"sync"
 	"time"
 
-	"tenant-copilot-backend/domain"
-	"tenant-copilot-backend/store"
+	"tenant-copilot/backend/domain"
+	"tenant-copilot/backend/store"
 )
 
 type Worker struct {

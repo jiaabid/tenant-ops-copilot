@@ -9,9 +9,9 @@ import (
 	"os"
 	"strings"
 
-	"tenant-copilot-backend/crypto"
-	"tenant-copilot-backend/domain"
-	"tenant-copilot-backend/store"
+	"tenant-copilot/backend/crypto"
+	"tenant-copilot/backend/domain"
+	"tenant-copilot/backend/store"
 )
 
 type Agent struct {

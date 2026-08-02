@@ -1,6 +1,6 @@
-module tenant-copilot-backend
+module tenant-copilot/backend
 
-go 1.25.0
+go 1.22.0
 
 require (
 	github.com/dustin/go-humanize v1.0.1 // indirect

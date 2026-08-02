@@ -6,11 +6,11 @@ import (
 	"net/http"
 	"strings"
 
-	"tenant-copilot-backend/copilot"
-	"tenant-copilot-backend/crypto"
-	"tenant-copilot-backend/domain"
-	"tenant-copilot-backend/store"
-	"tenant-copilot-backend/worker"
+	"tenant-copilot/backend/copilot"
+	"tenant-copilot/backend/crypto"
+	"tenant-copilot/backend/domain"
+	"tenant-copilot/backend/store"
+	"tenant-copilot/backend/worker"
 )
 
 type APIHandler struct {

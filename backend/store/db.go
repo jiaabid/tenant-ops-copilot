@@ -8,7 +8,7 @@ import (
 	"time"
 
 	_ "modernc.org/sqlite"
-	"tenant-copilot-backend/domain"
+	"tenant-copilot/backend/domain"
 )
 
 type DBStore struct {

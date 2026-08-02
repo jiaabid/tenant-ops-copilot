@@ -3,7 +3,7 @@ package crypto
 import (
 	"testing"
 
-	"tenant-copilot-backend/domain"
+	"tenant-copilot/backend/domain"
 )
 
 func TestProposalSigner_ValidSignature(t *testing.T) {
