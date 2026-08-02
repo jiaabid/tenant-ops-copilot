@@ -15,7 +15,7 @@ import {
 })
 export class JobService {
   private http = inject(HttpClient);
-  private apiUrl = 'http://localhost:8080/api';
+  private apiUrl = (typeof window !== 'undefined' && window.location.hostname !== 'localhost') ? '/api' : 'http://localhost:8080/api';
 
   getJobs(): Observable<JobListItem[]> {
     return this.http.get<JobListItem[]>(`${this.apiUrl}/jobs`);
